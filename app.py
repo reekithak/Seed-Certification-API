@@ -40,7 +40,7 @@ def home():
 @app.route('/seedbase/upload',methods=['GET','POST'])
 @cross_origin()
 def seedbase(image_fname=None):
-    model = tensorflow.keras.models.load_model(r'Models\Seed-Classification\Base_Model.h5')
+    model = tensorflow.keras.models.load_model('Models/Seed-Classification/Base_Model.h5')
     if request.method == 'POST' and  'photo' in request.files:
         filename = image_fname or photos.save(request.files['photo'])
         image = load_img('./static/img/'+filename,target_size=(224,224))
@@ -64,7 +64,7 @@ def seedbase(image_fname=None):
 @app.route('/seedcolor/upload',methods=['GET','POST'])
 @cross_origin()
 def seedcolor(image_fname=None):
-    model = tensorflow.keras.models.load_model(r'Models\Seed-Color\Color_Model.h5')
+    model = tensorflow.keras.models.load_model('Models/Seed-Color/Color_Model.h5')
     if request.method == 'POST' and  'photo' in request.files:
         filename = image_fname or photos.save(request.files['photo'])
         #return {"method": request.method, "url": request.url, "dir": dir(request), "files_len": len(list(request.files.lists())[0][1]), "filename": filename}
@@ -84,7 +84,7 @@ def seedcolor(image_fname=None):
 @app.route('/seedcrack/upload',methods=['GET','POST'])
 @cross_origin()
 def seedcrack(image_fname=None):
-    model = tensorflow.keras.models.load_model(r'Models\Seed-Crack\Crack_Model.h5')
+    model = tensorflow.keras.models.load_model('Models/Seed-Crack/Crack_Model.h5')
     if request.method == 'POST' and  'photo' in request.files:
         filename = image_fname or photos.save(request.files['photo'])
         image = load_img('./static/img/'+filename,target_size=(224,224))

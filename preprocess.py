@@ -7,7 +7,7 @@ from flask import request
 from flask import jsonify
 from flask import Flask
 from tensorflow.keras.preprocessing.image import load_img
-
+np.set_printoptions(suppress=True)
 
 def preprocess_image(image,target_size=(224, 224)):
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)

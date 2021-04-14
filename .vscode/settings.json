@@ -1,0 +1,5 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/52b84ee2-c79c-49e2-b58a-e812948ba4c4/resourceGroups/appsvc_linux_centralus_premium/providers/Microsoft.Web/sites/seedcertificationapi",
+    "appService.deploySubpath": ".",
+    "python.pythonPath": "C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
+}

@@ -11,19 +11,27 @@
     <h3>Agri-Care(All Units API)</h3>
 
     <body>
-        <div>
-            <style>
-                body {
-                    background-image: url('bcg.jpg');
-                    background-attachment: fixed;
-                    
-                    background-size: 100% 100%;
-                }
-            </style>
-        </div>
-
         <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload') }}">
-            <input id='choose' type=file name=photo> 
+            <span>Common</span>
+            <input id='choose' type=file name=photo multiple> 
+            <input id='submit' type="submit">
+        </form>
+
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seedbase') }}">
+            <span>Base API</span>
+            <input id='choose' type=file name=photo multiple> 
+            <input id='submit' type="submit">
+        </form>
+
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seedcrack') }}">
+            <span>Crack API</span>
+            <input id='choose' type=file name=photo multiple> 
+            <input id='submit' type="submit">
+        </form>
+
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seedcolor') }}">
+            <span>Color API</span>
+            <input id='choose' type=file name=photo multiple> 
             <input id='submit' type="submit">
         </form>
 

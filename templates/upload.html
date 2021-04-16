@@ -17,19 +17,19 @@
             <input id='submit' type="submit">
         </form>
 
-        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seedbase') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seed_quality') }}">
             <span>Base API</span>
             <input id='choose' type=file name=photo multiple> 
             <input id='submit' type="submit">
         </form>
 
-        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seedcrack') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seed_crack') }}">
             <span>Crack API</span>
             <input id='choose' type=file name=photo multiple> 
             <input id='submit' type="submit">
         </form>
 
-        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seedcolor') }}">
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('seed_color') }}">
             <span>Color API</span>
             <input id='choose' type=file name=photo multiple> 
             <input id='submit' type="submit">

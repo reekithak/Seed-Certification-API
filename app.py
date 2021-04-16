@@ -1,4 +1,4 @@
-from flask import Flask ,render_template , request
+from flask import Flask,render_template, request, jsonify
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_cors import CORS, cross_origin
 from preprocess import predict
@@ -9,11 +9,7 @@ import numpy as np
 import io
 import base64
 import os
-from flask import request
-from flask import jsonify
-from flask import Flask
 from tensorflow.keras.preprocessing.image import load_img
-from flask import jsonify, make_response
 
 
 app = Flask(__name__)
@@ -30,6 +26,10 @@ photos = UploadSet('photos',IMAGES)
 app.config['UPLOADED_PHOTOS_DEST'] = './static/img'
 configure_uploads(app,photos)
 
+seed_quality_model = tensorflow.keras.models.load_model('Models/Seed-Classification/Base_Model.h5')
+seed_color_model = tensorflow.keras.models.load_model('Models/Seed-Color/Color_Model.h5')
+seed_crack_model = tensorflow.keras.models.load_model('Models/Seed-Crack/Crack_Model.h5')
+
 #HOME
 @app.route('/home',methods=['GET','POST'])
 def home():
@@ -39,62 +39,106 @@ def home():
 #BASE MODEL
 @app.route('/seedbase/upload',methods=['GET','POST'])
 @cross_origin()
-def seedbase(image_fname=None):
-    model = tensorflow.keras.models.load_model('Models/Seed-Classification/Base_Model.h5')
+def seed_quality(image_fnames=None):
     if request.method == 'POST' and  'photo' in request.files:
-        filename = image_fname or photos.save(request.files['photo'])
-        image = load_img('./static/img/'+filename,target_size=(224,224))
-        prediction = predict(image,model)
-        answer = {
-            "Excellent":prediction[0][0],
-            "Good":prediction[0][1],
-            "Average":prediction[0][2],
-            "Bad":prediction[0][3],
-            "Worst":prediction[0][4]
+        filenames = image_fnames or [photos.save(image) for image in list(request.files.lists())[0][1]]
+        predictions = []
+
+        for filename in filenames:
+            image = load_img('./static/img/' + filename, target_size=(224,224))
+            prediction = predict(image, seed_quality_model)
+
+            answer = {
+                "excellent": prediction[0][0],
+                "good": prediction[0][1],
+                "average": prediction[0][2],
+                "bad": prediction[0][3],
+                "worst": prediction[0][4],
+                "filenames": filenames
+            }
+
+            predictions.append(answer)
+
+            if not image_fnames:
+                os.remove('./static/img/' + filename)
+
+        excellent = sum([prediction['excellent'] for prediction in predictions]) / len(predictions)
+        good = sum([prediction['good'] for prediction in predictions]) / len(predictions)
+        average = sum([prediction['average'] for prediction in predictions]) / len(predictions)
+        bad = sum([prediction['bad'] for prediction in predictions]) / len(predictions)
+        worst = sum([prediction['worst'] for prediction in predictions]) / len(predictions)
+
+        return {
+            "excellent": excellent,
+            "good": good,
+            "average": average,
+            "bad": bad,
+            "worst": worst
         }
-
-        if not image_fname:
-            os.remove('./static/img/' + filename)
-
-        return answer
 
     return render_template('upload.html')
 
 #SEED-COLOR
 @app.route('/seedcolor/upload',methods=['GET','POST'])
 @cross_origin()
-def seedcolor(image_fname=None):
-    model = tensorflow.keras.models.load_model('Models/Seed-Color/Color_Model.h5')
+def seed_color(image_fnames=None):
     if request.method == 'POST' and  'photo' in request.files:
-        filename = image_fname or photos.save(request.files['photo'])
-        #return {"method": request.method, "url": request.url, "dir": dir(request), "files_len": len(list(request.files.lists())[0][1]), "filename": filename}
-        image = load_img('./static/img/'+filename,target_size=(224,224))
-        prediction = predict(image,model)
-        answer = {"Colored Seed":prediction[0][0],"Good Seed":prediction[0][1]}
+        filenames = image_fnames or [photos.save(image) for image in list(request.files.lists())[0][1]]
+        predictions = []
 
-        if not image_fname:
-            os.remove('./static/img/' + filename)
+        for filename in filenames:
+            image = load_img('./static/img/' + filename, target_size=(224,224))
+            prediction = predict(image, seed_color_model)
 
+            answer = {
+                "dull": prediction[0][0],
+                "colored": prediction[0][1]
+            }
 
-        return answer
+            predictions.append(answer)
+
+            if not image_fnames:
+                os.remove('./static/img/' + filename)
+
+        colored = sum([prediction['colored'] for prediction in predictions]) / len(predictions)
+        dull = sum([prediction['dull'] for prediction in predictions]) / len(predictions)
+
+        return {
+            "colored": colored,
+            "dull": dull
+        }
 
     return render_template('upload.html')
 
 #SEED-CRACK
 @app.route('/seedcrack/upload',methods=['GET','POST'])
 @cross_origin()
-def seedcrack(image_fname=None):
-    model = tensorflow.keras.models.load_model('Models/Seed-Crack/Crack_Model.h5')
+def seed_crack(image_fnames=None):
     if request.method == 'POST' and  'photo' in request.files:
-        filename = image_fname or photos.save(request.files['photo'])
-        image = load_img('./static/img/'+filename,target_size=(224,224))
-        prediction = predict(image,model)
-        answer = {"Cracked Seed":prediction[0][0],"Good Seed":prediction[0][1]}
+        filenames = image_fnames or [photos.save(image) for image in list(request.files.lists())[0][1]]
+        predictions = []
 
-        if not image_fname:
-            os.remove('./static/img/' + filename)
+        for filename in filenames:
+            image = load_img('./static/img/' + filename, target_size=(224,224))
+            prediction = predict(image, seed_crack_model)
 
-        return answer
+            answer = {
+                "cracked": prediction[0][0],
+                "notCracked": prediction[0][1]
+            }
+
+            predictions.append(answer)
+
+            if not image_fnames:
+                os.remove('./static/img/' + filename)
+
+        cracked = sum([prediction['cracked'] for prediction in predictions]) / len(predictions)
+        notCracked = sum([prediction['notCracked'] for prediction in predictions]) / len(predictions)
+
+        return {
+            "cracked": cracked,
+            "notCracked": notCracked
+        }
 
     return render_template('upload.html')
 
@@ -102,14 +146,15 @@ def seedcrack(image_fname=None):
 @cross_origin()
 def upload():
     if request.method == 'POST' and  'photo' in request.files:
-        image = request.files['photo']
-        filename = photos.save(image)
-        
-        seedbase_api = seedbase(filename)
-        seedcolor_api = seedcolor(filename)
-        seedcrack_api = seedcrack(filename)
+        files = list(request.files.lists())[0][1]
+        filenames = [photos.save(image) for image in files]
 
-        os.remove('./static/img/' + filename)
+        seedbase_api = seed_quality(filenames)
+        seedcolor_api = seed_color(filenames)
+        seedcrack_api = seed_crack(filenames)
+
+        for image in filenames:
+            os.remove('./static/img/' + image)
         
         data = {
             "seedbase": seedbase_api.json,

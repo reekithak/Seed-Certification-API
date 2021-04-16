@@ -157,9 +157,9 @@ def upload():
             os.remove('./static/img/' + image)
         
         data = {
-            "seedbase": seedbase_api.json,
-            "seedcolor": seedcolor_api.json,
-            "seedcrack": seedcrack_api.json
+            "quality": seedbase_api.json,
+            "color": seedcolor_api.json,
+            "crack": seedcrack_api.json
         }
         
         return data

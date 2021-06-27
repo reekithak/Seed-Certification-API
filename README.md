@@ -1,8 +1,8 @@
 # Seed-Certification-API
-The Combinatory Deployment of 3 Major API's for Seed Certification Process.
+The Combinatory Deployment of 3 Major API's for Seed Certification Process. <br>
 
-Deployed as an API at : https://seedcert.azurewebsites.net/upload (currently inactive)
-Final Application Hosted at : https://www.certify-seeds.ml/
+Deployed as an API at : https://seedcert.azurewebsites.net/upload (currently inactive) <br>
+Final Application Hosted at : https://www.certify-seeds.ml/<br>
 
 ## Product Overview
 ### Main Page

@@ -5,7 +5,17 @@ Deployed as an API at : https://seedcert.azurewebsites.net/upload (currently ina
 Final Application Hosted at : https://www.certify-seeds.ml/
 
 ## Product Overview
+### Main Page
 <img src="https://github.com/reekithak/Seed-Certification-API/blob/main/Others/seedcert1.JPG" alt="MainImg"/>
+
+### Results
+<img src="https://github.com/reekithak/Seed-Certification-API/blob/main/Others/seedcert2.JPG" alt="MainImg"/>
+
+### Detailed
+<img src="https://github.com/reekithak/Seed-Certification-API/blob/main/Others/seedcert3.JPG" alt="MainImg"/>
+
+
+
 
 Upload only PNG/JPG Files
 

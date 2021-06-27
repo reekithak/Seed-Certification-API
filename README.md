@@ -4,6 +4,10 @@ The Combinatory Deployment of 3 Major API's for Seed Certification Process. <br>
 Deployed as an API at : https://seedcert.azurewebsites.net/upload (currently inactive) <br>
 Final Application Hosted at : https://www.certify-seeds.ml/<br>
 
+We won the Rotathon 2021 in "Development in Agriculture" Track with this project. The Certificates are available here:<br>
+1) [Akhil Sanker](https://github.com/reekithak/Seed-Certification-API/blob/main/Others/akhil.png)
+2) [Melvin Abraham](https://github.com/reekithak/Seed-Certification-API/blob/main/Others/melvin.png)
+
 ## Product Overview
 ### Main Page
 <img src="https://github.com/reekithak/Seed-Certification-API/blob/main/Others/seedcert1.JPG" alt="MainImg"/>

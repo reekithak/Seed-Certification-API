@@ -59,5 +59,5 @@ The Above steps makes it possible to run the API. The frontend is separately hos
 
 ## Need the Complete Application?
 Reach out to us :).
-[Akhil Sanker](https://www.linkedin.com/in/akhilsanker/)
+[Akhil Sanker](https://www.linkedin.com/in/akhilsanker/)<br>
 [Melvin Abraham](https://www.linkedin.com/in/melvin-l-abraham-729a89195/)

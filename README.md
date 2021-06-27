@@ -58,6 +58,6 @@ The application will be hosted into the local server.
 The Above steps makes it possible to run the API. The frontend is separately hosted in a private repository.
 
 ## Need the Complete Application?
-Reach out to us :).
+Reach out to us :). <br>
 [Akhil Sanker](https://www.linkedin.com/in/akhilsanker/)<br>
 [Melvin Abraham](https://www.linkedin.com/in/melvin-l-abraham-729a89195/)

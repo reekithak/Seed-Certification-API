@@ -9,6 +9,9 @@ We won the Rotathon 2021 in "Development in Agriculture" Track with this project
 2) [Melvin Abraham](https://github.com/reekithak/Seed-Certification-API/blob/main/Others/melvin.png)
 
 ## Product Overview
+
+### Main Description
+[Click Here](https://github.com/reekithak/Seed-Certification-API/tree/main/Others)
 ### Main Page
 <img src="https://github.com/reekithak/Seed-Certification-API/blob/main/Others/seedcert1.JPG" alt="MainImg"/>
 

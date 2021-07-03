@@ -13,7 +13,7 @@ Compared to traditional methods, this is cheap & has less manual work. The proje
 The API returns a json output of the test scores which is further processed by the react app for proper output.
 The Architecture of the Models are based on Modified RESNETs.
 
-## MY ROLE:
+## MY ROLE (Akhil):
 Developed the complete Backend part which includes:
 1)	Training Models
 2)	Testing and Combining the API’s

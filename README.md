@@ -6,7 +6,7 @@ Final Application Hosted at : https://www.certify-seeds.ml/<br>
 
 We won the Rotathon 2021 in "Development in Agriculture" Track with this project. The Certificates are available here:<br>
 1) [Akhil Sanker](https://github.com/reekithak/Seed-Certification-API/blob/main/Others/akhil.png)
-2) [Melvin Abraham](https://github.com/reekithak/Seed-Certification-API/blob/main/Others/melvin.png)
+2) [Melvin L Abraham](https://github.com/reekithak/Seed-Certification-API/blob/main/Others/melvin.png)
 
 ## Product Overview
 
